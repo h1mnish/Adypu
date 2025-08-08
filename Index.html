@@ -1,1 +1,183 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Delhi University Courses</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: #fff;
+      min-height: 100vh;
+      padding: 40px 20px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    header h1 {
+      font-size: 2.8rem;
+      margin-bottom: 10px;
+    }
+
+    header p {
+      font-size: 1.2rem;
+      opacity: 0.9;
+    }
+
+    .toggle-btn {
+      background: #fff;
+      color: #333;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      margin: 30px auto;
+      display: block;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .toggle-btn:hover {
+      background: #e6e6e6;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .courses {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      max-width: 800px;
+      margin: auto;
+    }
+
+    .course-section {
+      background: rgba(255,255,255,0.1);
+      border-radius: 12px;
+      padding: 20px;
+      border: 1px solid rgba(255,255,255,0.2);
+      cursor: pointer;
+    }
+
+    .course-section h2 {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+    }
+
+    .course-list {
+      margin-top: 10px;
+      padding-left: 20px;
+    }
+
+    .course-list li {
+      margin-bottom: 8px;
+      cursor: pointer;
+      list-style-type: circle;
+    }
+
+    .course-detail {
+      font-size: 0.95rem;
+      margin-top: 5px;
+      margin-left: 15px;
+      color: #e0e0e0;
+      display: none;
+    }
+
+    .footer {
+      margin-top: 60px;
+      text-align: center;
+      font-size: 0.9rem;
+      opacity: 0.7;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>ADYPU Courses</h1>
+    <p>I have made a sample front end page for my university !</p>
+  </header>
+
+  <button class="toggle-btn" onclick="toggleCourses()">Show Courses</button>
+
+  <section class="courses hidden" id="courseContainer">
+
+    <!-- UG Courses -->
+    <div class="course-section" onclick="toggleList('ugList')">
+      <h2>Undergraduate Courses</h2>
+      <ul class="course-list hidden" id="ugList">
+        <li onclick="showDetails(event, 'ug1')">B.Tech-Cse,Aisa,Itds
+          <div class="course-detail" id="ug1">Focus on coding,web,app development, Machine learning etc...</div>
+        </li>
+        <li onclick="showDetails(event, 'ug2')">BBA,MBA,B.com
+          <div class="course-detail" id="ug2">Covers buisness studies.</div>
+        </li>
+        <li onclick="showDetails(event, 'ug3')">Law, Design 
+          <div class="course-detail" id="ug3">Covers law course and designs.</div>
+        </li>
+      </ul>
+    </div>
+
+    <!-- PG Courses -->
+    <div class="course-section" onclick="toggleList('pgList')">
+      <h2>Postgraduate Courses</h2>
+      <ul class="course-list hidden" id="pgList">
+        <li onclick="showDetails(event, 'pg1')">M.A. History
+          <div class="course-detail" id="pg1">Study ancient to modern Indian and world history.</div>
+        </li>
+        <li onclick="showDetails(event, 'pg2')">M.Com
+          <div class="course-detail" id="pg2">Advanced topics in finance, marketing, and research.</div>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Diploma -->
+    <div class="course-section" onclick="toggleList('dipList')">
+      <h2>Diploma & Certificate Courses</h2>
+      <ul class="course-list hidden" id="dipList">
+        <li onclick="showDetails(event, 'dip1')">Diploma in French Language
+          <div class="course-detail" id="dip1">Learn French speaking, writing, and cultural nuances.</div>
+        </li>
+        <li onclick="showDetails(event, 'dip2')">Diploma in Cyber Security
+          <div class="course-detail" id="dip2">Learn about network security, ethical hacking, etc.</div>
+        </li>
+      </ul>
+    </div>
+
+  </section>
+
+  <div class="footer">
+    © 2025 Delhi University. Crafted for curious minds.
+  </div>
+
+  <script>
+    function toggleCourses() {
+      const courseContainer = document.getElementById('courseContainer');
+      courseContainer.classList.toggle('hidden');
+    }
+
+    function toggleList(id) {
+      event.stopPropagation(); // prevent parent div click
+      document.getElementById(id).classList.toggle('hidden');
+    }
+
+    function showDetails(event, detailId) {
+      event.stopPropagation(); // avoid triggering parent toggles
+      const detail = document.getElementById(detailId);
+      detail.style.display = detail.style.display === 'block' ? 'none' : 'block';
+    }
+  </script>
+</body>
+</html>
